@@ -20,7 +20,7 @@ CORS(app)
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 
-MONGO_URI = "mongodb://localhost:27017/user_database"
+MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client["user_database"]
 users_collection = db["users"]
