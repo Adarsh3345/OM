@@ -27,7 +27,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:5000/login", formData);
+      const response = await axios.post("https://om-mh8v.onrender.com/login", formData);
       const { access_token } = response.data;
       localStorage.setItem("accessToken", access_token);
       const decoded = jwtDecode(access_token);

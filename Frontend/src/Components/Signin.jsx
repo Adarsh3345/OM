@@ -28,7 +28,7 @@ function Signin() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://127.0.0.1:5000/signup", formData);
+            const response = await axios.post("https://om-mh8v.onrender.com/signup", formData);
             setMessage(response.data.message);
             setFormData({ name: "", email: "", password: "" });
 
