@@ -5,7 +5,7 @@ import HTML from "../Assets/HTML.png";
 import Python from "../Assets/Python.png";
 import CSS from "../Assets/CSS.png";
 import Java from "../Assets/Java.png";
-import logo from "../Assets/logo.png";
+import logo from "../Assets/Logo.png";
 import google from "../Assets/Google.png";
 import meta from "../Assets/Meta.png";
 import patym from "../Assets/Paytm.png";
