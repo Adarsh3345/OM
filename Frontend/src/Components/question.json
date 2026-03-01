@@ -1,0 +1,372 @@
+[
+  {
+    "series": 1,
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume that each input would have exactly one solution, and you may not use the same element twice. You can return the answer in any order.",
+    "example": [
+      "Input: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0,1].",
+      "Input: nums = [3,2,4], target = 6\nOutput: [1,2]"
+    ],
+    "constraints": [
+      "2 <= nums.length <= 10^4",
+      "-10^9 <= nums[i] <= 10^9",
+      "-10^9 <= target <= 10^9"
+    ],
+    "header": [
+      {
+        "language": "Java",
+        "version": "15.0.2",
+        "code": "class Main {\n   public int[] twoSum(int[] nums, int target) {\n\n   }\n}"
+      },
+      {
+        "language": "Python",
+        "version": "3.10",
+        "code": "class Solution:\n    def twoSum(self, nums: list[int], target: int) -> list[int]:\n        pass"
+      },
+      {
+        "language": "C",
+        "version": "10.2.0",
+        "code": "#include <stdio.h>\n\nvoid twoSum(int nums[], int target) {\n    \n}"
+      },
+      {
+        "language": "C++",
+        "version": "10.2.0",
+        "code": "#include <vector>\n#include <iostream>\nusing namespace std;\n\nclass Solution {\npublic:\n    vector<int> twoSum(vector<int>& nums, int target) {\n        \n    }\n};"
+      },
+      {
+        "language": "JavaScript",
+        "version": "18.15.0",
+        "code": "class Solution {\n    twoSum(nums, target) {\n        \n    }\n}"
+      }
+    ],
+    "imports": {
+      "Java": "import java.util.HashMap;\nimport java.util.Arrays;",
+      "Python": "import sys",
+      "C": "#include <stdio.h>",
+      "C++": "#include <iostream>\n#include <vector>",
+      "JavaScript": ""
+    },
+    "main_class": {
+      "Java": "public static void main(String[] args) {\n    Main solution = new Main();\n    ${testcases}\n}}",
+      "Python": "if __name__ == '__main__':\n    solution = Solution()\n    ${testcases}",
+      "C": "int main() {\n    ${testcases}\n    return 0;\n}",
+      "C++": "int main() {\n    Solution solution;\n    ${testcases}\n    return 0;\n}",
+      "JavaScript": "const solution = new Solution();\n${testcases}"
+    },
+    "testcases": {
+      "Java": [
+        "int[] nums = new int[]{2, 7, 11, 15};\nint target = 9;\nSystem.out.println(Arrays.toString(solution.twoSum(nums, target)));",
+        "int[] nums1 = new int[]{3, 2, 4};\nint target1 = 6;\nSystem.out.println(Arrays.toString(solution.twoSum(nums1, target1)));",
+        "int[] nums2 = new int[]{3, 3};\nint target2 = 6;\nSystem.out.println(Arrays.toString(solution.twoSum(nums2, target2)));",
+        "int[] nums3 = new int[]{1, 5, 2, 7};\nint target3 = 8;\nSystem.out.println(Arrays.toString(solution.twoSum(nums3, target3)));",
+        "int[] nums4 = new int[]{0, 4, 3, 0};\nint target4 = 0;\nSystem.out.println(Arrays.toString(solution.twoSum(nums4, target4)));",
+        "int[] nums5 = new int[]{-3, 4, 3, 90};\nint target5 = 0;\nSystem.out.println(Arrays.toString(solution.twoSum(nums5, target5)));",
+        "int[] nums6 = new int[]{2, 5, 5, 11};\nint target6 = 10;\nSystem.out.println(Arrays.toString(solution.twoSum(nums6, target6)));",
+        "int[] nums7 = new int[]{1, 2, 3, 4, 4};\nint target7 = 8;\nSystem.out.println(Arrays.toString(solution.twoSum(nums7, target7)));"
+      ],
+      "Python": [
+        "print(solution.twoSum([2, 7, 11, 15], 9))",
+        "print(solution.twoSum([3, 2, 4], 6))",
+        "print(solution.twoSum([3, 3], 6))",
+        "print(solution.twoSum([1, 5, 2, 7], 8))",
+        "print(solution.twoSum([0, 4, 3, 0], 0))",
+        "print(solution.twoSum([-3, 4, 3, 90], 0))",
+        "print(solution.twoSum([2, 5, 5, 11], 10))",
+        "print(solution.twoSum([1, 2, 3, 4, 4], 8))"
+      ],
+      "C": [
+        "// You need to manually call twoSum and print indices",
+        "// For example purposes, we only define the arrays",
+        "int nums[] = {2, 7, 11, 15}; int target = 9;",
+        "int nums1[] = {3, 2, 4}; int target1 = 6;",
+        "int nums2[] = {3, 3}; int target2 = 6;",
+        "int nums3[] = {1, 5, 2, 7}; int target3 = 8;",
+        "int nums4[] = {0, 4, 3, 0}; int target4 = 0;",
+        "int nums5[] = {-3, 4, 3, 90}; int target5 = 0;",
+        "int nums6[] = {2, 5, 5, 11}; int target6 = 10;",
+        "int nums7[] = {1, 2, 3, 4, 4}; int target7 = 8;"
+      ],
+      "C++": [
+        "vector<int> nums = {2, 7, 11, 15}; int target = 9;\nvector<int> result = solution.twoSum(nums, target);\ncout << \"[\";\nfor (size_t i = 0; i < result.size(); ++i) {\n    cout << result[i];\n    if (i != result.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums1 = {3, 2, 4}; int target1 = 6;\nvector<int> result1 = solution.twoSum(nums1, target1);\ncout << \"[\";\nfor (size_t i = 0; i < result1.size(); ++i) {\n    cout << result1[i];\n    if (i != result1.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums2 = {3, 3}; int target2 = 6;\nvector<int> result2 = solution.twoSum(nums2, target2);\ncout << \"[\";\nfor (size_t i = 0; i < result2.size(); ++i) {\n    cout << result2[i];\n    if (i != result2.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums3 = {1, 5, 2, 7}; int target3 = 8;\nvector<int> result3 = solution.twoSum(nums3, target3);\ncout << \"[\";\nfor (size_t i = 0; i < result3.size(); ++i) {\n    cout << result3[i];\n    if (i != result3.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums4 = {0, 4, 3, 0}; int target4 = 0;\nvector<int> result4 = solution.twoSum(nums4, target4);\ncout << \"[\";\nfor (size_t i = 0; i < result4.size(); ++i) {\n    cout << result4[i];\n    if (i != result4.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums5 = {-3, 4, 3, 90}; int target5 = 0;\nvector<int> result5 = solution.twoSum(nums5, target5);\ncout << \"[\";\nfor (size_t i = 0; i < result5.size(); ++i) {\n    cout << result5[i];\n    if (i != result5.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums6 = {2, 5, 5, 11}; int target6 = 10;\nvector<int> result6 = solution.twoSum(nums6, target6);\ncout << \"[\";\nfor (size_t i = 0; i < result6.size(); ++i) {\n    cout << result6[i];\n    if (i != result6.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;",
+        "vector<int> nums7 = {1, 2, 3, 4, 4}; int target7 = 8;\nvector<int> result7 = solution.twoSum(nums7, target7);\ncout << \"[\";\nfor (size_t i = 0; i < result7.size(); ++i) {\n    cout << result7[i];\n    if (i != result7.size() - 1) cout << \", \";\n}\ncout << \"]\" << endl;"
+      ],
+      "JavaScript": [
+        "console.log('[' + solution.twoSum([2, 7, 11, 15], 9).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([3, 2, 4], 6).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([3, 3], 6).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([1, 5, 2, 7], 8).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([0, 4, 3, 0], 0).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([-3, 4, 3, 90], 0).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([2, 5, 5, 11], 10).join(', ') + ']');",
+        "console.log('[' + solution.twoSum([1, 2, 3, 4, 4], 8).join(', ') + ']');"
+      ]
+    },
+    "Ans": [
+      {
+        "0": "[0, 1]"
+      },
+      {
+        "1": "[1, 2]"
+      },
+      {
+        "2": "[0, 1]"
+      },
+      {
+        "3": "[0, 3]"
+      },
+      {
+        "4": "[0, 3]"
+      },
+      {
+        "5": "[0, 2]"
+      },
+      {
+        "6": "[1, 2]"
+      },
+      {
+        "7": "[3, 4]"
+      }
+    ]
+  },
+  {
+    "series": 2,
+    "title": "Largest Element in Array",
+    "difficulty": "Easy",
+    "description": "Given an array arr[]. The task is to find the largest element and return it.",
+    "example": [
+      "Input: arr[] = [1, 8, 7, 56, 90]\nOutput: 90\nExplanation: The largest element of the given array is 90.",
+      "Input: arr[] = [5, 5, 5, 5]\nOutput: 5\nExplanation: The largest element of the given array is 5.",
+      "Input: arr[] = [10]\nOutput: 10\nExplanation: There is only one element which is the largest."
+    ],
+    "constraints": [
+      "1 <= arr.length <= 10^6",
+      "0 <= arr[i] <= 10^6"
+    ],
+    "header": [
+      {
+        "language": "Java",
+        "version": "15.0.2",
+        "code": "class Main {\n   public int findLargest(int[] arr) {\n       \n   }\n}"
+      },
+      {
+        "language": "Python",
+        "version": "3.10",
+        "code": "class Solution:\n    def findLargest(self, arr: list[int]) -> int:\n        pass"
+      },
+      {
+        "language": "C",
+        "version": "10.2.0",
+        "code": "#include <stdio.h>\n\nint findLargest(int arr[], int size) {\n    \n}"
+      },
+      {
+        "language": "C++",
+        "version": "10.2.0",
+        "code": "#include <vector>\n#include <iostream>\nusing namespace std;\n\nclass Solution {\npublic:\n    int findLargest(vector<int>& arr) {\n        \n    }\n};"
+      },
+      {
+        "language": "JavaScript",
+        "version": "18.15.0",
+        "code": "class Solution {\n    findLargest(arr) {\n        \n    }\n}"
+      }
+    ],
+    "imports": {
+      "Java": "import java.util.*;",
+      "Python": "",
+      "C": "#include <stdio.h>",
+      "C++": "#include <vector>\n#include <iostream>",
+      "JavaScript": ""
+    },
+    "main_class": {
+      "Java": "public static void main(String[] args) {\n    Main solution = new Main();\n    ${testcases}\n}}",
+      "Python": "if __name__ == '__main__':\n    solution = Solution()\n    ${testcases}",
+      "C": "int main() {\n    ${testcases}\n    return 0;\n}",
+      "C++": "int main() {\n    Solution solution;\n    ${testcases}\n    return 0;\n}",
+      "JavaScript": "const solution = new Solution();\n${testcases}"
+    },
+    "testcases": {
+      "Java": [
+        "int[] arr = new int[]{1, 8, 7, 56, 90};\nSystem.out.println(solution.findLargest(arr));",
+        "int[] arr1 = new int[]{5, 5, 5, 5};\nSystem.out.println(solution.findLargest(arr1));",
+        "int[] arr2 = new int[]{10};\nSystem.out.println(solution.findLargest(arr2));"
+      ],
+      "Python": [
+        "print(solution.findLargest([1, 8, 7, 56, 90]))",
+        "print(solution.findLargest([5, 5, 5, 5]))",
+        "print(solution.findLargest([10]))"
+      ],
+      "C": [
+        "int arr[] = {1, 8, 7, 56, 90};\nint size = sizeof(arr)/sizeof(arr[0]);\nprintf(\"%d\\n\", findLargest(arr, size));",
+        "int arr1[] = {5, 5, 5, 5};\nint size1 = sizeof(arr1)/sizeof(arr1[0]);\nprintf(\"%d\\n\", findLargest(arr1, size1));",
+        "int arr2[] = {10};\nint size2 = sizeof(arr2)/sizeof(arr2[0]);\nprintf(\"%d\\n\", findLargest(arr2, size2));"
+      ],
+      "C++": [
+        "vector<int> arr = {1, 8, 7, 56, 90};\ncout << solution.findLargest(arr) << endl;",
+        "vector<int> arr1 = {5, 5, 5, 5};\ncout << solution.findLargest(arr1) << endl;",
+        "vector<int> arr2 = {10};\ncout << solution.findLargest(arr2) << endl;"
+      ],
+      "JavaScript": [
+        "console.log(solution.findLargest([1, 8, 7, 56, 90]));",
+        "console.log(solution.findLargest([5, 5, 5, 5]));",
+        "console.log(solution.findLargest([10]));"
+      ]
+    },
+    "Ans": [
+      {
+        "0": "90"
+      },
+      {
+        "1": "5"
+      },
+      {
+        "2": "10"
+      }
+    ]
+  },
+  {
+    "series": 3,
+    "title": "Second Largest",
+    "difficulty": "Easy",
+    "description": "Given an array of positive integers arr[], return the second largest element from the array. If the second largest element doesn't exist, return -1. \nNote: The second largest element should not be equal to the largest element.",
+    "example": [
+      "Input: arr[] = [12, 35, 1, 10, 34, 1]\nOutput: 34\nExplanation: The largest element of the array is 35 and the second largest element is 34.",
+      "Input: arr[] = [10, 5, 10]\nOutput: 5\nExplanation: The largest element of the array is 10 and the second largest element is 5.",
+      "Input: arr[] = [10, 10, 10]\nOutput: -1\nExplanation: The largest element of the array is 10 and the second largest element does not exist."
+    ],
+    "constraints": [
+      "2 ≤ arr.size() ≤ 10^5",
+      "1 ≤ arr[i] ≤ 10^5"
+    ],
+    "solution": "📹",
+    "testcases": [
+      {
+        "input": [
+          12,
+          35,
+          1,
+          10,
+          34,
+          1
+        ],
+        "output": 34
+      },
+      {
+        "input": [
+          10,
+          5,
+          10
+        ],
+        "output": 5
+      },
+      {
+        "input": [
+          10,
+          10,
+          10
+        ],
+        "output": -1
+      }
+    ]
+  },
+  {
+    "series": 4,
+    "title": "Check if Array Is Sorted and Rotated",
+    "difficulty": "Easy",
+    "description": "Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero). Otherwise, return false.\n\nThere may be duplicates in the original array.\n\nNote: An array A rotated by x positions results in an array B of the same length such that B[i] == A[(i+x) % A.length] for every valid index i.",
+    "example": [
+      "Input: nums = [3,4,5,1,2]\nOutput: true\nExplanation: [1,2,3,4,5] is the original sorted array.\nYou can rotate the array by x = 3 positions to begin on the element of value 3: [3,4,5,1,2].",
+      "Input: nums = [2,1,3,4]\nOutput: false\nExplanation: There is no sorted array once rotated that can make nums.",
+      "Input: nums = [1,2,3]\nOutput: true\nExplanation: [1,2,3] is the original sorted array.\nYou can rotate the array by x = 0 positions (i.e. no rotation) to make nums."
+    ],
+    "constraints": [
+      "1 <= nums.length <= 100",
+      "1 <= nums[i] <= 100"
+    ],
+    "solution": "📹",
+    "testcases": [
+      {
+        "input": [
+          3,
+          4,
+          5,
+          1,
+          2
+        ],
+        "output": true
+      },
+      {
+        "input": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "output": false
+      },
+      {
+        "input": [
+          1,
+          2,
+          3
+        ],
+        "output": true
+      }
+    ]
+  },
+  {
+    "series": 5,
+    "title": "Remove Duplicates from Sorted Array",
+    "difficulty": "Easy",
+    "description": "Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.\n\nConsider the number of unique elements of nums to be k, to get accepted, you need to do the following things:\n\nChange the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.\nReturn k.\n\nCustom Judge:\nThe judge will test your solution with the following code:\n\n```java\nint[] nums = [...]; // Input array\nint[] expectedNums = [...]; // The expected answer with correct length\n\nint k = removeDuplicates(nums); // Calls your implementation\n\nassert k == expectedNums.length;\nfor (int i = 0; i < k; i++) {\n    assert nums[i] == expectedNums[i];\n}\n```\n\nIf all assertions pass, then your solution will be accepted.",
+    "example": [
+      "Input: nums = [1,1,2]\nOutput: 2, nums = [1,2,_]\nExplanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores).",
+      "Input: nums = [0,0,1,1,1,2,2,3,3,4]\nOutput: 5, nums = [0,1,2,3,4,_,_,_,_,_]\nExplanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.\nIt does not matter what you leave beyond the returned k (hence they are underscores)."
+    ],
+    "constraints": [
+      "1 <= nums.length <= 3 * 10^4",
+      "-100 <= nums[i] <= 100",
+      "nums is sorted in non-decreasing order."
+    ],
+    "solution": "📹",
+    "testcases": [
+      {
+        "input": [
+          1,
+          1,
+          2
+        ],
+        "output": [
+          1,
+          2
+        ]
+      },
+      {
+        "input": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4
+        ],
+        "output": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ]
+  }
+]
