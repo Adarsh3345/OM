@@ -16,7 +16,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://om-9eyn.vercel.app"], supports_credentials=True)
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 
@@ -32,6 +32,7 @@ bcrypt = Bcrypt(app)
 
 CLIENT_ID = os.getenv("CLIENT_ID") 
 PISTON_API_URL = "https://emkc.org/api/v2/piston/execute"
+
 
 rooms = {}  
 connected_users = {}  
