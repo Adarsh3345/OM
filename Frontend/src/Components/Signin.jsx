@@ -42,7 +42,7 @@ function Signin() {
 
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
-            const response = await axios.post("http://localhost:5000//api/google-signin", {
+            const response = await axios.post("https://om-mh8v.onrender.com/api/google-signin", {
                 token: credentialResponse.credential,
             });
 
