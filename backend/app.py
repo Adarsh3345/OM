@@ -16,7 +16,7 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=["https://om-9eyn.vercel.app"], supports_credentials=True)
+CORS(app, origins=["https://om-rho-rose.vercel.app"], supports_credentials=True)
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 
