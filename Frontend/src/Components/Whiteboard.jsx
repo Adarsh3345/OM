@@ -8,7 +8,7 @@ function Whiteboard({ roomKey, username }) {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    const socket = io("http://127.0.0.1:5000");
+    const socket = io("https://om-mh8v.onrender.com");
     socketRef.current = socket;
 
     // Join the room when component mounts
