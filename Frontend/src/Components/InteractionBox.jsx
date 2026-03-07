@@ -72,7 +72,7 @@ function InteractionBox({ title, problem }) {
     }, [userName, roomId]);
 
     const createRoom = async () => {
-        const response = await fetch("http://127.0.0.1:5000/create-room", {
+        const response = await fetch("https://om-mh8v.onrender.com/create-room", {
             method: "POST",
         });
         const data = await response.json();
