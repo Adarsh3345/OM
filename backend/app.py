@@ -119,8 +119,12 @@ def execute_code():
         version = data.get("version")
         code = data.get("code")
 
-        if not all([language, version, code]):
-            return jsonify({"error": "Missing language, version, or code"}), 400
+        if not all([language, code]):
+            return jsonify({"error": "Missing language or code"}), 400
+
+        # fallback version if missing
+        if not version:
+            version = "*"
 
         response = requests.post(
             PISTON_API_URL,
@@ -129,25 +133,24 @@ def execute_code():
                 "version": version,
                 "files": [{"content": code}]
             },
-            timeout=5
+            timeout=10
         )
-
-        if response.status_code != 200:
-            return jsonify({"error": "Execution API failed"}), 500
 
         result = response.json()
 
-        output = result.get("run", {}).get("output", "")
-        stderr = result.get("run", {}).get("stderr", "")
+        if response.status_code != 200:
+            return jsonify({"error": result}), 500
+
+        run = result.get("run", {})
+        output = run.get("output", "")
+        stderr = run.get("stderr", "")
 
         return jsonify({
             "output": output if output else stderr if stderr else "No output"
         })
 
-    except requests.exceptions.Timeout:
-        return jsonify({"error": "Execution timeout"}), 500
-
     except Exception as e:
+        print("ERROR:", str(e))  # 🔥 check logs in Render
         return jsonify({"error": str(e)}), 500
 
 @app.route("/create-room", methods=["POST"])
