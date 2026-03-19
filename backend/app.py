@@ -113,23 +113,42 @@ def profile():
 
 @app.route("/execute", methods=["POST"])
 def execute_code():
-    data = request.json
-    language = data.get("language")
-    version = data.get("version")
-    code = data.get("code")
+    try:
+        data = request.json
+        language = data.get("language")
+        version = data.get("version")
+        code = data.get("code")
 
-    if not all([language, version, code]):
-        return jsonify({"error": "Missing language, version, or code"}), 400
+        if not all([language, version, code]):
+            return jsonify({"error": "Missing language, version, or code"}), 400
 
-    response = requests.post(PISTON_API_URL, json={
-        "language": language,
-        "version": version,
-        "files": [{"content": code}]
-    })
+        response = requests.post(
+            PISTON_API_URL,
+            json={
+                "language": language,
+                "version": version,
+                "files": [{"content": code}]
+            },
+            timeout=5
+        )
 
-    if response.status_code == 200:
-        return jsonify({"output": response.json()["run"]["output"]})
-    return jsonify({"error": response.text}), response.status_code
+        if response.status_code != 200:
+            return jsonify({"error": "Execution API failed"}), 500
+
+        result = response.json()
+
+        output = result.get("run", {}).get("output", "")
+        stderr = result.get("run", {}).get("stderr", "")
+
+        return jsonify({
+            "output": output if output else stderr if stderr else "No output"
+        })
+
+    except requests.exceptions.Timeout:
+        return jsonify({"error": "Execution timeout"}), 500
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route("/create-room", methods=["POST"])
 def create_room():
@@ -198,4 +217,5 @@ def handle_disconnect():
     print(f"[SocketIO] Client disconnected: {request.sid}")
 
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 8080))
+    socketio.run(app, host="0.0.0.0", port=port)
