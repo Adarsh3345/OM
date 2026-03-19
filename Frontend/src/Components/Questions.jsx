@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { ChevronDown, ChevronUp, CircleCheck, CircleX, RotateCcw, Copy, Timer as TimerIcon, Pause, AlignLeft } from "lucide-react";
 import InteractionBox from "./InteractionBox";
 import questions from "./question.json";
-
+import Editor from '@monaco-editor/react';
 function Questions() {
     const location = useLocation();
     const { questionName } = useParams();
@@ -12,7 +12,7 @@ function Questions() {
     const [isOpen, setIsOpen] = useState(false);
     const [outputs, setOutputs] = useState([]);
     const [code, setCode] = useState("");
-
+    const [language, setLanguage] = useState("Java");
     const [timerActive, setTimerActive] = useState(false);
     const [timer, setTimer] = useState(0);
     const timerRef = React.useRef(null);
@@ -29,10 +29,8 @@ function Questions() {
     }, [problem, questionName]);
 
     useEffect(() => {
-        if (problem) {
-            setCode(getCodeByLanguage(problem, selectedOption));
-        }
-    }, [problem, selectedOption]);
+       console.log(code)
+    }, [code]);
 
     useEffect(() => {
         if (timerActive) {
@@ -67,6 +65,11 @@ function Questions() {
         }
     };
 
+    const submitCode = () => {
+        // Implement code submission logic here
+        console.log("Code submitted:", code);
+    }
+
     const handleRunCode = async () => {
         const lang = selectedOption;
         const imports = problem.imports?.[lang] || "";
@@ -81,7 +84,7 @@ function Questions() {
         };
 
         try {
-            const res = await fetch("https://om-mh8v.onrender.com/execute", {
+            const res = await fetch("http://127.0.0.1:5000/execute", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
@@ -264,17 +267,19 @@ function Questions() {
                     </div>
 
                     <div className="relative">
-                        <textarea
-                            className="w-full h-64 md:h-96 p-2 border-b border-l border-r rounded-b-md resize-none font-mono"
-                            value={code}
-                            onChange={(e) => setCode(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                        />
+                        <Editor 
+                        onChange={(e)=>{
+                            setCode(e);
+                        }}
+                         value={code} 
+                         height="50vh"
+                        defaultLanguage="java" 
+                         defaultValue="// some comment" />
                     </div>
 
                     <div className="flex gap-2 mt-4">
                         <button onClick={handleRunCode} className="w-20 py-2 px-4 rounded-lg text-white bg-[#5418ebd2] hover:bg-[#5318EB]">Run</button>
-                        <button className="w-20 py-2 px-4 rounded-lg text-white bg-[#aa6ef9d7] hover:bg-[#AB6EF9]">Submit</button>
+                        <button onClick={submitCode} className="w-20 py-2 px-4 rounded-lg text-white bg-[#aa6ef9d7] hover:bg-[#AB6EF9]">Submit</button>
                     </div>
                 </div>
 

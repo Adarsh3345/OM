@@ -20,12 +20,6 @@ function Profile() {
     problemsThisYear: 120,
   });
 
-  // Placeholder for API data fetching
-  // useEffect(() => {
-  //   fetch("/api/user/profile")
-  //     .then((res) => res.json())
-  //     .then((data) => setUser(data));
-  // }, []);
 
   const solvedPercent = Math.round((user.solvedCount / user.totalCount) * 100);
 
