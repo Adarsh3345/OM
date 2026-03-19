@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import {
-  ChevronDown, ChevronUp, CircleCheck, CircleX,
-  RotateCcw, Copy, Timer as TimerIcon, Pause, AlignLeft
+  ChevronDown, ChevronUp, RotateCcw, Copy,
+  Timer as TimerIcon, Pause, AlignLeft
 } from "lucide-react";
 import InteractionBox from "./InteractionBox";
 import questions from "./question.json";
@@ -23,7 +23,7 @@ function Questions() {
 
   const [timerActive, setTimerActive] = useState(false);
   const [timer, setTimer] = useState(0);
-  const timerRef = React.useRef(null);
+  const timerRef = useRef(null);
 
   const options = ["Java", "Python", "C", "C++", "JavaScript"];
 
@@ -36,6 +36,13 @@ function Questions() {
       setProblem(found || null);
     }
   }, [problem, questionName]);
+
+  // Load default code when problem OR language changes
+  useEffect(() => {
+    if (problem) {
+      setCode(getCodeByLanguage(problem, selectedOption));
+    }
+  }, [problem, selectedOption]);
 
   // Timer
   useEffect(() => {
@@ -81,9 +88,7 @@ function Questions() {
     try {
       const res = await fetch(`${API_URL}/execute`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
@@ -92,12 +97,10 @@ function Questions() {
       if (data.error) {
         setOutputs([data.error]);
       } else {
-        setOutputs(
-          data.output ? data.output.split("\n") : ["No output"]
-        );
+        setOutputs(data.output ? data.output.split("\n") : ["No output"]);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       setOutputs(["Execution failed"]);
     } finally {
       setLoading(false);
@@ -153,30 +156,35 @@ function Questions() {
           <h2 className="text-xl font-bold">
             {problem.series}.{problem.title}
           </h2>
-          <p className="mt-2 text-gray-700">
-            {problem.description}
-          </p>
+          <p className="mt-2 text-gray-700">{problem.description}</p>
         </div>
 
         {/* Editor */}
         <div className="bg-white p-4 rounded-lg shadow mb-4">
+
           <div className="flex justify-between items-center">
 
-            {/* Language Selector */}
+            {/* Language Dropdown */}
             <div className="relative">
-              <button onClick={() => setIsOpen(!isOpen)}>
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-2"
+              >
                 {selectedOption}
+                {isOpen ? <ChevronUp /> : <ChevronDown />}
               </button>
 
               {isOpen && (
-                <ul className="absolute bg-purple-500 text-white p-2 rounded">
+                <ul className="absolute bg-purple-600 text-white p-2 rounded shadow z-10">
                   {options.map((option) => (
-                    <li key={option}
+                    <li
+                      key={option}
+                      className="cursor-pointer px-2 py-1 hover:bg-purple-800"
                       onClick={() => {
                         setSelectedOption(option);
-                        setCode(getCodeByLanguage(problem, option));
                         setIsOpen(false);
-                      }}>
+                      }}
+                    >
                       {option}
                     </li>
                   ))}
@@ -184,7 +192,7 @@ function Questions() {
               )}
             </div>
 
-            {/* Buttons */}
+            {/* Tools */}
             <div className="flex gap-2">
               <button onClick={handleFormat}><AlignLeft /></button>
               <button onClick={handleReset}><RotateCcw /></button>
@@ -192,13 +200,16 @@ function Questions() {
             </div>
           </div>
 
+          {/* Monaco Editor */}
           <Editor
+            key={selectedOption} // 🔥 FIX
             height="50vh"
             language={selectedOption.toLowerCase()}
             value={code}
             onChange={(value) => setCode(value || "")}
           />
 
+          {/* Buttons */}
           <div className="flex gap-2 mt-4">
             <button
               onClick={handleRunCode}
