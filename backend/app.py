@@ -116,18 +116,16 @@ def execute_code():
     try:
         data = request.json
         language = data.get("language")
-        version = data.get("version")
         code = data.get("code")
 
-        if not all([language, code]):
+        if not language or not code:
             return jsonify({"error": "Missing language or code"}), 400
 
-        # fallback version if missing
-        if not version:
-            version = "*"
+        # 🔥 Always use safe version
+        version = "*"
 
         response = requests.post(
-            PISTON_API_URL,
+            "https://emkc.org/api/v2/piston/execute",
             json={
                 "language": language,
                 "version": version,
@@ -138,8 +136,13 @@ def execute_code():
 
         result = response.json()
 
+        # 🔥 Debug print (check in Render logs)
+        print("PISTON RESPONSE:", result)
+
         if response.status_code != 200:
-            return jsonify({"error": result}), 500
+            return jsonify({
+                "error": result
+            }), 500
 
         run = result.get("run", {})
         output = run.get("output", "")
@@ -150,7 +153,7 @@ def execute_code():
         })
 
     except Exception as e:
-        print("ERROR:", str(e))  # 🔥 check logs in Render
+        print("ERROR:", str(e))
         return jsonify({"error": str(e)}), 500
 
 @app.route("/create-room", methods=["POST"])
